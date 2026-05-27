@@ -49,4 +49,23 @@ public class SearchSteps {
         assertEquals(output.getName(), storeName);
     }
 
+    @Then ("there should only be {int} registered Coffeeshop")
+    public void there_is_int_shops(final Integer counter){
+        int count = search.getAllStores().size();
+        assertEquals(counter,count);
+    }
+    @Then("the name of the Coffeeshop should be {string}")
+        public void namecheck(final String shop){
+            boolean store_exist = false;
+            var stores = search.getAllStores();
+            for (var store : stores){
+                if (store.getName().equals(shop)){
+                    store_exist = true;
+                    break;
+                }
+            }
+            assertTrue(store_exist);
+        }
+
+
 }
